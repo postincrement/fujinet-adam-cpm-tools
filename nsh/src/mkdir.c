@@ -10,9 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mkdir.h"
-#include "adamnet_read.h"
-#include "adamnet_write.h"
 #include "input.h"
+#include "network.h"
 
 extern unsigned char response[1024];
 
@@ -38,5 +37,5 @@ void mkdir(char *s)
   if (s!=NULL)
     strncpy(&resp[1],s,256);
   
-  return adamnet_write(resp,strlen(resp));
+  TRANSPORT_WRITE(resp,strlen(resp));
 }

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "find_dcb.h"
 #include "dcb.h"
-#include "debug.h"
+#include "../debug.h"
 
 /**
  * @brief Write to Network device

@@ -10,8 +10,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "dir.h"
-#include "adamnet_read.h"
-#include "adamnet_write.h"
 #include "network.h"
 #include "wait_for_connect.h"
 

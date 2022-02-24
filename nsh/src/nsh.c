@@ -29,3 +29,9 @@ void nsh(void)
   if (parse() == false)
     printf("%s?\n\n",cmdline);
 }
+
+#if __UNIX__
+int kbhit()
+{ return 0; }
+#endif   
+

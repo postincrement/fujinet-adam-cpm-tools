@@ -1,25 +1,43 @@
-TARGET_EXEC ?= nsh.com
 
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./src
 
-CC=zcc
-AS=zcc
+ifeq ($(TRANSPORT),SERIAL)
+CFLAGS+=-D__SERIAL__
+ADDSRCS := $(shell find src/serial -name *.cpp -or -name *.c -or -name *.asm)
+else
+CFLAGS+=-D__ADAMNET__
+ADDSRCS := $(shell find src/adamnet -name *.cpp -or -name *.c -or -name *.asm)
+endif
 
-SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.asm)
+ifeq ($(PLATFORM),UNIX)
+TARGET_EXEC ?= nsh
+CC=cc -g -o $(TARGET_EXEC)
+CFLAGS+=-D__UNIX__
+else
+TARGET_EXEC ?= nsh.com
+CC=zcc
+CFLAGS=+cpm -subtype=adam -D__CPM__ 
+LDFLAGS=+cpm -subtype=adam -o$(TARGET_EXEC) -create-app -lfujicpm
+endif
+
+SRCS += $(ADDSRCS) $(shell find $(SRC_DIRS) -depth 1 \( -name *.cpp -or -name *.c -or -name *.asm \) )
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
-CFLAGS=+cpm -subtype=adam
-LDFLAGS=+cpm -subtype=adam -o$(TARGET_EXEC) -create-app -lfujicpm
-ASFLAGS=+cpm -subtype=adam
 
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
+ifeq ($(PLATFORM),UNIX)
+all: $(BUILD_DIR)/$(TARGET_EXEC)
+else
+all: $(BUILD_DIR)/$(TARGET_EXEC)
+	cp nsh.img ../../tnfs/nsh.dsk
+endif
+
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS)
-	cp nsh.img ../../tnfs/nsh.dsk
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
@@ -39,3 +57,7 @@ clean:
 -include $(DEPS)
 
 MKDIR_P ?= mkdir -p
+
+test:
+	-echo $(ADDSRCS)
+	-echo $(SRCS)

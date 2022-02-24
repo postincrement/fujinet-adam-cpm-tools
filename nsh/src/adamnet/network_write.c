@@ -8,10 +8,10 @@
  */
 
 #include <string.h>
-#include <conio.h>
-#include "network.h"
 #include "dcb.h"
 #include "find_dcb.h"
+#include "../network.h"
+#include "../platform.h"
 #include "adamnet_write.h"
 
 unsigned char network_write(char *buf, unsigned short len)

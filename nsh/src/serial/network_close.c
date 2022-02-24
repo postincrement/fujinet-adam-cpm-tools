@@ -5,9 +5,8 @@
  */
 
 #include <stdio.h>
-#include "adamnet_write.h"
-#include "network.h"
-#include "debug.h"
+#include "../network.h"
+#include "../debug.h"
 
 unsigned char network_close(void)
 {
@@ -16,5 +15,5 @@ unsigned char network_close(void)
   if (debug_enabled())
     printf("\nNETWORK CLOSE\n");
   
-  return adamnet_write(&resp,1);
+  return serial_write(&resp,1);
 }

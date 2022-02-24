@@ -9,10 +9,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
+#include "platform.h"
+
 #include "dir.h"
-#include "adamnet_read.h"
-#include "adamnet_write.h"
 #include "network.h"
 #include "wait_for_connect.h"
 #include "input.h"
@@ -26,7 +25,7 @@ unsigned char txbuf[64];
 
 void in(void)
 {
-  unsigned short l = network_read(response, sizeof(response));
+  unsigned short l = network_read((char *)response, sizeof(response));
   
   if (l > 0)
     for (unsigned short i=0;i<l;i++)
@@ -40,7 +39,7 @@ void out(void)
   if (kbhit())
     {
       txbuf[0]=cgetc();
-      network_write(txbuf,1); // send one char.
+      network_write((char *)txbuf,1); // send one char.
     }
 }
 

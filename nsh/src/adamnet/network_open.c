@@ -9,9 +9,12 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "network.h"
+#include "../network.h"
+#include "dcb.h"
+#include "find_dcb.h"
+#include "../debug.h"
+#include "../platform.h"
 #include "adamnet_write.h"
-#include "debug.h"
 
 extern unsigned char response[1024];
 

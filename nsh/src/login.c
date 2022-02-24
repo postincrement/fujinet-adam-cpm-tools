@@ -11,9 +11,8 @@
 #include <string.h>
 #include <stdbool.h>
 #include "mkdir.h"
-#include "adamnet_read.h"
-#include "adamnet_write.h"
 #include "input.h"
+#include "network.h"
 
 extern unsigned char response[1024];
 extern bool _input_pw;
@@ -44,7 +43,7 @@ void login(char *s, char *t)
   strncpy(&lc[1],s,127);
   strncpy(&pc[1],t,127);
 
-  adamnet_write(lc,sizeof(lc));  
-  adamnet_write(pc,sizeof(pc));
+  TRANSPORT_WRITE(lc,sizeof(lc));  
+  TRANSPORT_WRITE(pc,sizeof(pc));
   printf("\n");
 }

@@ -7,16 +7,14 @@
  */
 
 #include <string.h>
-#include <conio.h>
-#include "network.h"
-#include "dcb.h"
-#include "find_dcb.h"
-#include "adamnet_read.h"
+#include "../network.h"
+#include "../platform.h"
 
 extern unsigned char response[1024];
 
 unsigned short network_read(char *buf, unsigned short len)
 {
+  /*
   DCB *dcb = find_dcb();
   unsigned char r=adamnet_read(response,sizeof(response));
   
@@ -26,5 +24,6 @@ unsigned short network_read(char *buf, unsigned short len)
       return dcb->len;
     }
   else
+  */
     return 0;
 }

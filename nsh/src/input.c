@@ -7,10 +7,10 @@
  */
 
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "platform.h"
 
 #define ETX 0x03
 #define BS 0x08

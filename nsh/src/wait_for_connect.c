@@ -7,7 +7,7 @@
  */
 
 #include <stdio.h>
-#include <conio.h>
+#include "platform.h"
 #include <stdbool.h>
 #include "network.h"
 #include "wait_for_connect.h"
