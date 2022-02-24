@@ -14,7 +14,7 @@
 #include "../platform.h"
 #include "adamnet_write.h"
 
-unsigned char network_write(char *buf, unsigned short len)
+unsigned char network_write(unsigned char *buf, unsigned short len)
 {  
   unsigned char r=0;
   while (len>0)

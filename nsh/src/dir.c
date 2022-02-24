@@ -32,7 +32,7 @@ void dir(char *s)
 
   do
     {
-      char buf[1024];
+      unsigned char buf[1024];
       unsigned short l = network_read(buf,sizeof(buf));
       
       for (int i=0;i<l;i++)

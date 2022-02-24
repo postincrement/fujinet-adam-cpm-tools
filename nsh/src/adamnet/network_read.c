@@ -14,7 +14,7 @@
 
 extern unsigned char response[1024];
 
-unsigned short network_read(char *buf, unsigned short len)
+unsigned short network_read(unsigned char *buf, unsigned short len)
 {
   DCB *dcb = find_dcb();
   unsigned char r=adamnet_read(response,sizeof(response));

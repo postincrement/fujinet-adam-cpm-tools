@@ -62,7 +62,7 @@ void put(char *s, char *t)
 
   while (!feof(fp))
     {
-      char buf[128];
+      unsigned char buf[128];
       int l = fread(buf,sizeof(char),128,fp);
       
       network_write(buf,l);

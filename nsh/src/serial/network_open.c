@@ -18,7 +18,7 @@ extern unsigned char response[1024];
 
 unsigned char network_open(char *url, unsigned char mode, unsigned char translation)
 {
-  char *p = &response[3];
+  char *p = (char *)&response[3];
   memset(response,0,sizeof(response));
   
   response[0]='O';

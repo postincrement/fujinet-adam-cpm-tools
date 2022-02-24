@@ -21,8 +21,8 @@ void login(char *s, char *t)
 {
   char resp[257];
   char u[128], p[128];
-  char lc[128]={0xFD};
-  char pc[128]={0xFE};
+  unsigned char lc[128]={0xFD};
+  unsigned char pc[128]={0xFE};
   
   if (s==NULL)
     {
@@ -40,8 +40,8 @@ void login(char *s, char *t)
       _input_pw=false;
     }
 
-  strncpy(&lc[1],s,127);
-  strncpy(&pc[1],t,127);
+  strncpy((char *)&lc[1],s,127);
+  strncpy((char *)&pc[1],t,127);
 
   TRANSPORT_WRITE(lc,sizeof(lc));  
   TRANSPORT_WRITE(pc,sizeof(pc));

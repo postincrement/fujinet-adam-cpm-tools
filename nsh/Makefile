@@ -2,6 +2,17 @@
 BUILD_DIR ?= ./build
 SRC_DIRS ?= ./src
 
+ifeq ($(PLATFORM),UNIX)
+TARGET_EXEC ?= nsh
+CC=cc -g -o $(TARGET_EXEC)
+CFLAGS+=-D__UNIX__
+else
+TARGET_EXEC ?= nsh.com
+CC=zcc
+CFLAGS+=+cpm -subtype=adam -D__CPM__ 
+LDFLAGS=+cpm -subtype=adam -o$(TARGET_EXEC) -create-app -lfujicpm
+endif
+
 ifeq ($(TRANSPORT),SERIAL)
 CFLAGS+=-D__SERIAL__
 ADDSRCS := $(shell find src/serial -name *.cpp -or -name *.c -or -name *.asm)
@@ -10,16 +21,6 @@ CFLAGS+=-D__ADAMNET__
 ADDSRCS := $(shell find src/adamnet -name *.cpp -or -name *.c -or -name *.asm)
 endif
 
-ifeq ($(PLATFORM),UNIX)
-TARGET_EXEC ?= nsh
-CC=cc -g -o $(TARGET_EXEC)
-CFLAGS+=-D__UNIX__
-else
-TARGET_EXEC ?= nsh.com
-CC=zcc
-CFLAGS=+cpm -subtype=adam -D__CPM__ 
-LDFLAGS=+cpm -subtype=adam -o$(TARGET_EXEC) -create-app -lfujicpm
-endif
 
 SRCS += $(ADDSRCS) $(shell find $(SRC_DIRS) -depth 1 \( -name *.cpp -or -name *.c -or -name *.asm \) )
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)

@@ -12,13 +12,8 @@
 unsigned char network_open(char *url, unsigned char mode, unsigned char translation);
 unsigned char network_close(void);
 unsigned char network_statusbyte(void);
-unsigned short network_read(char *buf, unsigned short len);
-unsigned char network_write(char *buf, unsigned short len);
-
-/*
-unsigned char adamnet_write(unsigned char *buf, unsigned short len);
-unsigned char adamnet_read(unsigned char *buf, unsigned short len);
-*/
+unsigned short network_read(unsigned char *buf, unsigned short len);
+unsigned char network_write(unsigned char *buf, unsigned short len);
 
 #if __ADAMNET__
 

@@ -34,6 +34,8 @@ bool _wait_for_connect(unsigned char bit)
       printf("COULD NOT OPEN NET CONNECTION.\n");
       return false;
     }
+
+    return true;
 }
 
 bool wait_for_connect(void)

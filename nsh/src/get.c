@@ -61,7 +61,7 @@ void get(char *s, char *t)
 
   while (1)
     {
-      char buf[1024];
+      unsigned char buf[1024];
       unsigned short l = network_read(buf,sizeof(buf));
 
       if (fwrite(buf,sizeof(char),l,fp) != l)

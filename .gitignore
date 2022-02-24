@@ -34,3 +34,5 @@ nsh/build/src/serial/network_statusbyte.c.o
 nsh/build/src/serial/network_write.c.o
 nsh/build/src/serial/serial_read.c.o
 nsh/build/src/serial/serial_write.c.o
+nsh/nsh
+.vscode/settings.json

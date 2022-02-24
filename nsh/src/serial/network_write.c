@@ -11,7 +11,7 @@
 #include "../network.h"
 #include "../platform.h"
 
-unsigned char network_write(char *buf, unsigned short len)
+unsigned char network_write(unsigned char *buf, unsigned short len)
 {  
   unsigned char r=0;
   while (len>0)
@@ -21,7 +21,7 @@ unsigned char network_write(char *buf, unsigned short len)
       
       memcpy(&out[1],buf,l);
 
-      r=TRANSPORT_WRITE(out,l+1);
+      r=TRANSPORT_WRITE((unsigned char *)out,l+1);
 
       if (r!=0x80)
 	break;

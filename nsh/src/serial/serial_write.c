@@ -18,6 +18,19 @@ unsigned char serial_write(unsigned char *buf, unsigned short len)
     printf("\n");
   }
 
+#if __UNIX__
+  for (int i = 0; i < len; ++i) {
+    printf(" %02x", buf[i]);
+  }
+#endif  
+
+#if __CPM__
+  for (int i = 0; i < len; ++i) {
+    bdos()
+    printf(" %02x", buf[i]);
+  }
+#endif  
+
 #if 0    
   while (1)
     {

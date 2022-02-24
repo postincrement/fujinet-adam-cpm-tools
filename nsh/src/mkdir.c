@@ -13,11 +13,10 @@
 #include "input.h"
 #include "network.h"
 
-extern unsigned char response[1024];
+extern char response[1024];
 
 void mkdir(char *s)
 {
-  char resp[257];
   char dir[256];
   
   if (s==NULL)
@@ -30,12 +29,12 @@ void mkdir(char *s)
   if (s==NULL)
     return;
   
-  memset(resp,0,sizeof(resp));
+  memset(response,0,sizeof(response));
   
-  resp[0]='*'; // 0x2C
+  response[0]='*'; // 0x2C
 
   if (s!=NULL)
-    strncpy(&resp[1],s,256);
+    strncpy(&response[1],s,256);
   
-  TRANSPORT_WRITE(resp,strlen(resp));
+  TRANSPORT_WRITE((unsigned char *)response,strlen(response));
 }

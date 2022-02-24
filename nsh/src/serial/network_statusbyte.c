@@ -23,4 +23,5 @@ unsigned char network_statusbyte(void)
   
   return dcb->dev_status;
   */
+ return 0;
 }
